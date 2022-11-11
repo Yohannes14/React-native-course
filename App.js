@@ -13,13 +13,22 @@ export default function App() {
     setCourseGoals((prev) => 
     [...prev, {text:enteredGoalText, id:Math.random().toString()}]);
   };
+  const deleteGoalHandler =(id) =>{
+    setCourseGoals(prev => {
+      return prev.filter((goal) => goal.id !== id);
+    });
+  }
+
   return ( 
     <View style={styles.appContainer}>
       <GoalInput onAddGoal ={addGoalHandler}/>
       <View style={styles.goalContainer}>
         {/* Optimizing list with flatlist */}
       <FlatList data ={courseGoals} renderItem= {itemData =>{ 
-        return <GoalItem text ={itemData.item.text}/>;
+        return <GoalItem 
+                 text ={itemData.item.text}
+                 id ={itemData.item.id}
+                 onDeleteItem ={deleteGoalHandler}/>;
       }}
         keyExtractor ={(item, index) => {
           return item.id;
