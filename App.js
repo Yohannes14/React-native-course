@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {Button, 
+        FlatList, 
         ScrollView, 
         StyleSheet,
         Text,
@@ -14,7 +15,8 @@ export default function App() {
     setEnteredGoalText(enteredText);
   };
   const addInputHandler = () => {
-    setCourseGoals((prev) => [...prev, enteredGoalText]);
+    setCourseGoals((prev) => 
+    [...prev, {text:enteredGoalText, id:Math.random().toString()}]);
   };
   return (
     <View style={styles.appContainer}>
@@ -27,14 +29,20 @@ export default function App() {
         <Button title="Add Goal!" onPress={addInputHandler} />
       </View>
       <View style={styles.goalContainer}>
-        {/* make content scrollable */}
-      <ScrollView alwaysBounceVertical ={false}>
-        {courseGoals.map((goal, index) => (
-          <View key={index} style={styles.goalItem}>
-            <Text style={styles.goalText}>{goal}</Text>
-          </View>
-        ))}
-      </ScrollView>
+        {/* Optimizing list with flatlist */}
+      <FlatList data ={courseGoals} renderItem= {itemData =>{ 
+        return(
+            <View style={styles.goalItem}>
+              <Text style={styles.goalText}>{itemData.item.text}</Text>
+            </View>
+        );
+      }}
+        keyExtractor ={(item, index) => {
+          return item.id;
+        }}
+         alwaysBounceVertical ={false}
+       
+      />
       </View>
     </View>
   );
