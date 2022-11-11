@@ -15,9 +15,14 @@ export default function App() {
     setModalIsVisible(true);
 
   }
+ 
+  const endAddGoalHandler =() =>{
+     setModalIsVisible(false);
+  }
   const addGoalHandler = (enteredGoalText) => {
     setCourseGoals((prev) => 
     [...prev, {text:enteredGoalText, id:Math.random().toString()}]);
+    endAddGoalHandler();
   };
   const deleteGoalHandler =(id) =>{
     setCourseGoals(prev => {
@@ -34,6 +39,7 @@ export default function App() {
       <GoalInput 
            showModal ={modalIsVisible}
            onAddGoal ={addGoalHandler}
+           onCancel ={endAddGoalHandler}
           />
       <View style={styles.goalContainer}>
         {/* Optimizing list with flatlist */}
