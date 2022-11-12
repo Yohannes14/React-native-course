@@ -23,6 +23,7 @@ const  StartGameScreen = () => {
 }
 
 export default  StartGameScreen;
+
 const styles =StyleSheet.create({
     inputContainer: {
         justifyContent: 'center',
