@@ -22,7 +22,7 @@ export default function App() {
 const styles = StyleSheet.create({
   rootScreen :{
     flex: 1,
-   // backgroundColor: '#ddb52f',
+   //backgroundColor: '#ddb52f',
   },
   backgroundImage :{
     opacity: 0.15,
