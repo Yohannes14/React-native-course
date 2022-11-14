@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import { View, Text, StyleSheet, Alert } from 'react-native'
 import NumberContainer from '../componets/game/NumberContainer';
 import PrimaryButton from '../componets/ui/PrimaryButton';
@@ -15,14 +15,21 @@ import Title from '../componets/ui/Title';
     }
   }
 
-const GameScreen = ({userNumber}) => {
+const GameScreen = ({userNumber, onGameOver}) => {
 
   let minBoundary = 1;
   let maxBoundary = 100;
-  const initialGuess = generateRandomBetween(minBoundary, maxBoundary, userNumber);
+  const initialGuess = generateRandomBetween(1, 100, userNumber);
   const [currentGuesss, setCurrentGuess] = useState(initialGuess);
    
-  
+  // the check the game is over or not
+  useEffect(() => {
+       if(currentGuesss === userNumber) {
+        onGameOver();
+
+       }
+  }, [currentGuesss, userNumber, onGameOver]);
+
   const nextGuessHandler =(direction) =>{
      // derection => 'lower', 'greater
      if(direction === 'lower' && currentGuesss < userNumber ||
