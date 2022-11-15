@@ -1,11 +1,12 @@
 import {useEffect, useState} from 'react'
 import { View, StyleSheet, Alert } from 'react-native'
+import {Ionicons} from "@expo/vector-icons"
 import NumberContainer from '../componets/game/NumberContainer';
 import InstructionText from '../componets/ui/InstructionText';
 import PrimaryButton from '../componets/ui/PrimaryButton';
 import Title from '../componets/ui/Title';
 import Colors from '../constants/Colors';
-
+ 
   // use to generate random number 
   const generateRandomBetween =(min, max, exclude) =>{
     const rndNum = Math.floor(Math.random() * (max-min)) + min;
@@ -64,12 +65,14 @@ const GameScreen = ({userNumber, onGameOver}) => {
         <View style ={styles.buttonContainer}>
       <PrimaryButton 
         onPress={nextGuessHandler.bind(this, 'lower')}
-        name  = '-' />
+        name  = {<Ionicons  name ="md-remove" size ={24} color ="white" />}
+        />
         </View>
         <View  style ={styles.buttonContainer}>
         <PrimaryButton 
         onPress={nextGuessHandler.bind(this,'greater')}
-         name = '+' />
+         name = {<Ionicons  name ="md-add" size ={24} color ="white" />}
+         />
          </View>
       </View>
      </View>
