@@ -1,9 +1,9 @@
 import { StyleSheet, Text } from "react-native";
 import Colors from "../../constants/Colors";
 
-const InstructionText = ({name}) => {
+const InstructionText = ({name, style}) => {
   return (
-    <Text style ={styles.instructionText}>{name}</Text>
+    <Text style ={[styles.instructionText, style]}>{name}</Text>
   )
 }
 

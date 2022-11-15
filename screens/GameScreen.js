@@ -57,14 +57,20 @@ const GameScreen = ({userNumber, onGameOver}) => {
      <Title  name ="Oppennet's  Guess"/>
       <NumberContainer name ={currentGuesss} />
       <View style ={styles.inputContainer}>
-      <InstructionText name ="Higher or lower?" />
-      <View>
+      <InstructionText 
+       style={styles.instructionText}
+      name ="Higher or lower?" />
+      <View style ={styles.buttonsContainer}>
+        <View style ={styles.buttonContainer}>
       <PrimaryButton 
         onPress={nextGuessHandler.bind(this, 'lower')}
         name  = '-' />
+        </View>
+        <View  style ={styles.buttonContainer}>
         <PrimaryButton 
         onPress={nextGuessHandler.bind(this,'greater')}
          name = '+' />
+         </View>
       </View>
      </View>
      {/* <View>LOG ROUNDS</View> */}
@@ -93,5 +99,14 @@ const styles = StyleSheet.create({
     shadowOffset: {width:0 , height: 2},
     shadowRadius: 6,
     shadowOpacity: 0.25,
+},
+instructionText: {
+ marginBottom: 12,
+},
+buttonsContainer :{
+  flexDirection: 'row',
+},
+buttonContainer:{
+  flex: 1,
 }
 })
