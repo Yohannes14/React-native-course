@@ -1,8 +1,10 @@
 import {useEffect, useState} from 'react'
-import { View, Text, StyleSheet, Alert } from 'react-native'
+import { View, StyleSheet, Alert } from 'react-native'
 import NumberContainer from '../componets/game/NumberContainer';
+import InstructionText from '../componets/ui/InstructionText';
 import PrimaryButton from '../componets/ui/PrimaryButton';
 import Title from '../componets/ui/Title';
+import Colors from '../constants/Colors';
 
   // use to generate random number 
   const generateRandomBetween =(min, max, exclude) =>{
@@ -54,11 +56,9 @@ const GameScreen = ({userNumber, onGameOver}) => {
     <View style ={styles.screen}>
      <Title  name ="Oppennet's  Guess"/>
       <NumberContainer name ={currentGuesss} />
-  
-     <View>
+      <View style ={styles.inputContainer}>
+      <InstructionText name ="Higher or lower?" />
       <View>
-      <Text>Higher or lower?</Text>
-      
       <PrimaryButton 
         onPress={nextGuessHandler.bind(this, 'lower')}
         name  = '-' />
@@ -80,4 +80,18 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 12,
   },
+  inputContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 36,
+    marginHorizontal:24,
+    padding: 16,
+    backgroundColor: Colors.primary800,
+    borderRadius: 8,
+    elevation: 4,
+    shadowColor: 'black',
+    shadowOffset: {width:0 , height: 2},
+    shadowRadius: 6,
+    shadowOpacity: 0.25,
+}
 })
