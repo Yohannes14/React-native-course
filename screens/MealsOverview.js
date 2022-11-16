@@ -26,12 +26,13 @@ const MealsOverview = ({route, navigation}) => {
   const renderMealItem =(itemData)=>{
     const item =itemData.item;
     const mealItemProps ={
+      id: item.id,
       title: item.title,
       imgUrl: item.imageUrl,
       duration: item.duration,
       complexity: item.complexity,
       affordability: item.affordability
-      
+  
     };
 
     return <MealItem {...mealItemProps}
