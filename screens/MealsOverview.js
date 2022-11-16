@@ -1,9 +1,11 @@
 import { StyleSheet, Text, View } from "react-native"
 
-const MealsOverview = () => {
+const MealsOverview = ({route}) => {
+  // get from category screen
+  const catId = route.params.categoryId;
   return (
     <View style ={styles.container}>
-        <Text> Meals Over</Text>
+        <Text> Meals Over--{catId}</Text>
 
     </View>
   )

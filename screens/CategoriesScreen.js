@@ -4,15 +4,17 @@ import { CATEGORIES } from "../data/dummy-data";
 
 const CategoriesScreen = ({navigation}) => {
 
-    function renderCategoryItem(itemDate) {
+    function renderCategoryItem(itemData) {
 
         const pressHandler= () =>{
-            navigation.navigate("MealsOverview");
+            navigation.navigate("MealsOverview", {
+                categoryId:itemData.item.id,
+            });
     
         }
         return (
-            <CategoryGridTitle title ={itemDate.item.title}
-                color ={itemDate.item.color}
+            <CategoryGridTitle title ={itemData.item.title}
+                color ={itemData.item.color}
                 onPress ={pressHandler} />
         );
     
