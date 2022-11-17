@@ -1,27 +1,43 @@
-import { useContext, useLayoutEffect } from "react";
-import { Button, Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import {  useLayoutEffect } from "react";
+import {  Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import IconsButton from "../components/IconsButton";
 import List from "../components/mealDetail/List";
 import Subtitle from "../components/mealDetail/Subtitle";
 import MealDetails from "../components/MealDetails";
 import { MEALS } from "../data/dummy-data";
-import { FavoritesContext } from "../store/context/FavoritesContext";
+import { addFavorite, removeFavorite } from "../store/redux/Favorite";
+// import { FavoritesContext } from "../store/context/FavoritesContext";
 
 const MealDetailScreen = ({ route, navigation }) => {
-  const favoriteContext = useContext(FavoritesContext);
-  
-  const mealId = route.params.mealId;
+  // this for contex api
+  // const favoriteContext = useContext(FavoritesContext);
+   
+  // use redux toolkit
+   const favoriteMealsId = useSelector(state => state.favoritMeals.ids);
+   const dispatch = useDispatch();
 
+  const mealId = route.params.mealId;
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
   
+    
+  
   // to find favorite
-  const mealIsFavorite = favoriteContext.ids.includes(mealId);
-  // add button on headers
+   //use context api
+  // const mealIsFavorite = favoriteContext.ids.includes(mealId);
+
+  const mealIsFavorite = favoriteMealsId.includes(mealId);
+
+  // add button on headers 
    function changeFavoriteStatusHandler(){
     if(mealIsFavorite) {
-      favoriteContext.removeFavorite(mealId);
+      // context api 
+      // favoriteContext.removeFavorite(mealId);
+      dispatch(removeFavorite({id: mealId}));
     }else {
-      favoriteContext.addFavorite(mealId);
+      // context api
+      // favoriteContext.addFavorite(mealId);
+      dispatch(addFavorite({id: mealId}));
     }
    }
   useLayoutEffect(() => {
