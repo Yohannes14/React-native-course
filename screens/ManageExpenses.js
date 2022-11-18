@@ -9,4 +9,4 @@ const ManageExpenses = () => {
 
 export default ManageExpenses;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({}); 
