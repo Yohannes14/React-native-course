@@ -1,10 +1,17 @@
 
-import { FlatList } from 'react-native-gesture-handler'
+import { Text, FlatList } from 'react-native';
 
-const ExpensesList = () => {
+
+const renderExpenseItem =(itemData)=>{
+    return <Text>{itemData.item.description}</Text>
+}
+const ExpensesList = ({expenses}) => {
   return (
-    <FlatList />
+    <FlatList data ={expenses} 
+    renderItem ={renderExpenseItem}
+    keyExtractor ={item => item.id}
+    />
   )
 }
 
-export default ExpensesList
+export default ExpensesList;
